@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'recipes',
     'customers',
     'ingredient',
     'authentication.apps.AuthenticationConfig',
