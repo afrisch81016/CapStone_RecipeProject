@@ -5,7 +5,8 @@ import './SearchPage.css';
 
 const SearchPage = (props) => {
     const [searchResults,setSearchResults] = useState([]);
-    
+    const [filteredData,setFilteredData] = useState([]);
+
     async function getSearchResults(search){
         let response = await axios.get('https://tasty.p.rapidapi.com/recipes/list?', {
             params:{
@@ -25,8 +26,16 @@ const SearchPage = (props) => {
     setSearchResults(response.data.results);
 }
 
-
-
+const handleSubmit =(event)=>{
+        const searchWord = event.target.value
+        const newFilter = searchResults.filter((value) =>{
+            return value.total_time_tier.toLowerCase().includes(searchWord);
+        });
+        setFilteredData(newFilter);
+        event.preventDefault();
+        console.log('handlesubmit event triggered');
+        console.log('Test',searchWord);
+    }
 
 
 const handleClick = (event,name) => {
@@ -50,7 +59,9 @@ return(
                 })}
                     <tr className ='row'>
                         <td>
+                            <form type = 'text' onSubmit ={(event) => handleSubmit(event)}>
                             <input type ='text' onClick ={(event) => handleClick(event,searchResults.name,searchResults.description)}/>
+                            </form>
                         </td>
                     </tr>
             </tbody>
@@ -64,27 +75,28 @@ return(
 
 
 export default SearchPage
+
+
 //I know that searchResults was SET to response.data and is retrieving the data. I now need to map over the searchResults to help define the return better
 // const [definedSearchResults,setDefinedSearchResults] = useState([]);
 
 // function mappedSearch (mapped){
-//     let mappedresponse = searchResults.map(element => {
-//         return element.name
+    //     let mappedresponse = searchResults.map(element => {
+        //         return element.name
         
-//     })
-//     console.log('Mapped', mappedresponse)
-    
-// }
-
-
-// function definedSearchResult(){
-    //     let filteredResult = searchResults.filter(response.data) => {
+        //     })
+        //     console.log('Mapped', mappedresponse)
+        
+        // }
+        
+        // let filteredResult = searchResults.filter(response.data) => {
         //         if (searchResults === ""){
-            //             return filteredResult;
-            //         }
-            //         else if(searchResults.name.toLowerCase().includes(searchResults.toLowercase()))
-            //         return filteredResult
+        //                 return filteredResult;
+        //             }
+        //             else if(searchResults.name.toLowerCase().includes(searchResults.toLowercase()))
+        //             return filteredResult
             
-            //     }
-            // }        
+        //         }
+        //     }        
+
             
