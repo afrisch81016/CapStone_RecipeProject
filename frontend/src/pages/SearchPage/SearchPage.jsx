@@ -23,18 +23,32 @@ const SearchPage = (props) => {
     });
     
     console.log('Search Results', response.data.results);
-    setSearchResults(response.data.results);
+    let result = sortThatShit(response.data.results)
+    setSearchResults(result);
 }
 
-const handleSubmit =(event)=>{
-        const searchWord = event.target.value
-        const newFilter = searchResults.filter((value) =>{
-            return value.total_time_tier.toLowerCase().includes(searchWord);
+const sortThatShit =(shitToSort)=>{
+
+        const newFilter = shitToSort.sort((a, b) =>{
+            let fa = a.name.toLowerCase(),
+            fb =b.name.toLowerCase();
+
+            if (fa < fb){
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
         });
-        setFilteredData(newFilter);
-        event.preventDefault();
-        console.log('handlesubmit event triggered');
-        console.log('Test',searchWord);
+        newFilter.forEach((element) =>{
+            console.log(element);
+        });
+        return newFilter
+        // setFilteredData(newFilter);
+        // event.preventDefault();
+        // console.log('handlesubmit event triggered');
+        // console.log('Test',searchWord);
     }
 
 
@@ -57,13 +71,7 @@ return(
                         </tr>
                     )
                 })}
-                    <tr className ='row'>
-                        <td>
-                            <form type = 'text' onSubmit ={(event) => handleSubmit(event)}>
-                            <input type ='text' onClick ={(event) => handleClick(event,searchResults.name,searchResults.description)}/>
-                            </form>
-                        </td>
-                    </tr>
+                   
             </tbody>
         </table>
     </div>

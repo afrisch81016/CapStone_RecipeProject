@@ -13,7 +13,7 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-
+import Pantry from "./components/Pantry/Pantry"
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
