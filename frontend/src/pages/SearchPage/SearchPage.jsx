@@ -12,7 +12,7 @@ const SearchPage = (props) => {
                 from: '0',
                 size: '5',
                 tags: 'under_30_minutes',
-                q: 'chicken, onions, celery, carrots',
+                q: search,
                 
             },
             headers:{'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
@@ -24,41 +24,20 @@ const SearchPage = (props) => {
     console.log('Search Results', response.data.results);
     setSearchResults(response.data.results);
 }
-//I know that searchResults was SET to response.data and is retrieving the data. I now need to map over the searchResults to help define the return better
-// const [definedSearchResults,setDefinedSearchResults] = useState([]);
-
-// function mappedSearch (mapped){
-//     let mappedresponse = searchResults.map(element => {
-//         return element.name
-        
-//     })
-//     console.log('Mapped', mappedresponse)
-    
-// }
 
 
-// function definedSearchResult(){
-    //     let filteredResult = searchResults.filter(response.data) => {
-        //         if (searchResults === ""){
-            //             return filteredResult;
-            //         }
-            //         else if(searchResults.name.toLowerCase().includes(searchResults.toLowercase()))
-            //         return filteredResult
-            
-            //     }
-            // }        
-            
-            
-            
-            const handleClick = (event,name,description) => {
-                event.preventDefault();
-                props.setRecipeChoice(name,description)
-                console.log('handleclick event triggered');
-            }
-            
-            
-    return(
-        <div className='SearchBar1' >
+
+
+
+const handleClick = (event,name) => {
+    event.preventDefault();
+    props.setRecipeChoice(name)
+    console.log('handleclick event triggered');
+}
+
+
+return(
+    <div className='SearchBar1' >
         <SearchBar className='SearchBar' getSearchResults={getSearchResults} />
         <table>
             <tbody>
@@ -85,3 +64,27 @@ const SearchPage = (props) => {
 
 
 export default SearchPage
+//I know that searchResults was SET to response.data and is retrieving the data. I now need to map over the searchResults to help define the return better
+// const [definedSearchResults,setDefinedSearchResults] = useState([]);
+
+// function mappedSearch (mapped){
+//     let mappedresponse = searchResults.map(element => {
+//         return element.name
+        
+//     })
+//     console.log('Mapped', mappedresponse)
+    
+// }
+
+
+// function definedSearchResult(){
+    //     let filteredResult = searchResults.filter(response.data) => {
+        //         if (searchResults === ""){
+            //             return filteredResult;
+            //         }
+            //         else if(searchResults.name.toLowerCase().includes(searchResults.toLowercase()))
+            //         return filteredResult
+            
+            //     }
+            // }        
+            
