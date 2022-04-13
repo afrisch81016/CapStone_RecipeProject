@@ -18,21 +18,26 @@ const DisplayPantryItems = (props) => {
 
         console.log(newIngredient);
         addIngredient(newIngredient);
-        pantryIngredients();
+        pantryIngredients(newIngredient);
     }
-
-    const pantryIngredients= async() =>{
-            let response = await axios.get('http://127.0.0.1:8000/api/ingredient/');
-            setIngredients(response.data)
-            console.log(response.data)
+    const pantryIngredients =async() =>{
+        try {
+            let response = await axios.get('http://127.0.0.1:8000/api/ingredient/addnew/',{
+                headers: {
+                    Authorization: 'Bearer ' + token,
+                }
+            });
+            setIngredients(response.data);
+            console.log(response.data);
+        } catch (error){
+            console.log(error.message);
         }
+     }
 
     useEffect(()=> {
         pantryIngredients();
         console.log(ingredients)
-    })
-
-
+    },[]);
 
    const addIngredient =async(newIngredient) =>{
        try {
@@ -48,11 +53,12 @@ const DisplayPantryItems = (props) => {
     }
        return(
            <form className='formbox' onSubmit={handleIngredient}>
-              <div className = 'displayPantry'>
+              <div className = 'displayPantry'> Pantry
                   {ingredients.map((ingredients, index) =>{
                       return(
                       <div>
                           <tr key={index}>{ingredients.text}
+                          <td>{ingredients.user}</td>
                           <td>{ingredients.name}</td>
                           <td>{ingredients.best_by_date}</td>
                           </tr>
