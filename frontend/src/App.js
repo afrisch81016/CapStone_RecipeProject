@@ -17,14 +17,11 @@ import Pantry from "./components/Pantry/Pantry"
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
 
 const [recipeChoice,setRecipeChoice] = useState();
-console.log (recipeChoice)
-
-
 
 
 
@@ -38,6 +35,7 @@ console.log (recipeChoice)
             <PrivateRoute>
               <HomePage />
               <SearchPage />
+              <Pantry />
             </PrivateRoute>
           }
         />
