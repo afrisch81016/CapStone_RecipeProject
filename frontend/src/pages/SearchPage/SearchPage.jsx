@@ -23,23 +23,23 @@ const SearchPage = (props) => {
     });
     
     console.log('Search Results', response.data.results);
-    let result = sortThatShit(response.data.results)
+    let result = sortedData(response.data.results)
     setSearchResults(result);
 }
 
-const sortThatShit =(shitToSort)=>{
+const sortedData =(dataToSort)=>{
 
-        const newFilter = shitToSort.sort((a, b) =>{
+        const newFilter = dataToSort.sort((a, b) =>{
             let fa = a.name.toLowerCase(),
             fb =b.name.toLowerCase();
 
-            if (fa < fb){
+            if (fa < fb){ // -1 moves the object to the left
                 return -1;
             }
-            if (fa > fb) {
+            if (fa > fb) { // 1 moves the object to the right
                 return 1;
             }
-            return 0;
+            return 0; // 0 is not index loctaion, it means "do nothing" when sorting
         });
         newFilter.forEach((element) =>{
             console.log(element);
