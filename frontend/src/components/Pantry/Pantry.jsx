@@ -21,7 +21,7 @@ const DisplayPantryItems = (props) => {
         addIngredient(newIngredient);
     }
 
-    const pantryIngredeints= async() =>{
+    const pantryIngredients= async() =>{
             let response = await axios.get('http://127.0.0.1:8000/api/ingredient');
             setIngredients(response.data)
             console.log(response.data)
@@ -29,9 +29,13 @@ const DisplayPantryItems = (props) => {
     }
 
 
-   function addIngredient(newIngredient){
+   const addIngredient =async(newIngredient) =>{
        try {
-           let response = await axios.post('http://127.0.0.1:8000/api/ingredient', newIngredient);
+           let response = await axios.post('http://127.0.0.1:8000/api/ingredient', newIngredient,{
+               headers: {
+                   Authorization: 'Bearer ' + token,
+               }
+           });
            setIngredients(response.data);
        } catch (error){
            console.log(error.message);
@@ -39,8 +43,11 @@ const DisplayPantryItems = (props) => {
 
        return(
            <form className='formbox' onSubmit={handleIngredient}>
+               <div>
+                   <div>pantryIngredients={pantryIngredients}</div>
                <input type ='text' value = {ingredients} onChange = {(event) => setIngredients(event.target.value)}/>
                <input type ='submit' value ='Ingredients'/>
+               </div>
            </form>
 
 
