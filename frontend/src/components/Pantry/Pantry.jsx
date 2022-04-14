@@ -36,7 +36,6 @@ const DisplayPantryItems = (props) => {
 
     useEffect(()=> {
         pantryIngredients();
-        console.log(ingredients)
     },[]);
 
    const addIngredient =async(newIngredient) =>{

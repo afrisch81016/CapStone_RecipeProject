@@ -13,7 +13,9 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import Pantry from "./components/Pantry/Pantry"
+import Pantry from "./components/Pantry/Pantry";
+import Favorite_recipes from "./components/Favorite_recipes/Favorite_recipes";
+
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
@@ -34,6 +36,7 @@ const [recipeChoice,setRecipeChoice] = useState();
           element={
             <PrivateRoute>
               <HomePage />
+              <Favorite_recipes />
               <SearchPage />
               <Pantry />
             </PrivateRoute>
