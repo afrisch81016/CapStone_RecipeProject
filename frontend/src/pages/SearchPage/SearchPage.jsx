@@ -5,8 +5,7 @@ import './SearchPage.css';
 
 const SearchPage = (props) => {
     const [searchResults,setSearchResults] = useState([]);
-    const [filteredData,setFilteredData] = useState([]);
-    const [ingredients,setIngredients] = useState ([]);
+    
 
     async function getSearchResults(search){
         let response = await axios.get('https://tasty.p.rapidapi.com/recipes/list?', {
@@ -51,16 +50,22 @@ const sortedData =(dataToSort)=>{
         // console.log('handlesubmit event triggered');
         // console.log('Test',searchWord);
     }
+    //i need to use searchResults to retrieve the recipe then i need to map over the searchResults and map over the pantry per user,
+    //and then return a list of the ingredients left from the recipe(so the user knows which ingredients they are missing)
+    //props.results.sections.components.ingredient.name // this is the dot notation pathing that is needed to access ingredients from the tasty api
 
+    const [recipe,setRecipe] = useState([]);
 
-const handleClick = (event,name,ingredient) => {
-        setSearchResults(name,ingredient)
-        //props.results.sections.components.ingredient.name // this is the dot notation pathing that is needed to access ingredients from the tasty api
-    
-    console.log('handleclick event triggered');
-    
-}
-    
+    const handleClick = (recipe) => {
+        setRecipe(recipe.sections[0].components);
+    }
+    console.log('handleclick event triggered', recipe);
+
+    //step one is code ingredient into handleclick
+    //create another useState variable to store the ingredients from the recipe from the onclick
+    //then map over like I have coded on line 74 then 
+    //return results
+        
 
 
 
@@ -71,12 +76,19 @@ return(
             <tbody>
                 {searchResults && searchResults.map((searchResults, index) =>{
                     return(
-                        <tr key={index}>
-                        <td onClick={handleClick}>{searchResults.name}</td>
+                        <tr key={index} style={{color: "white"}}>
+                        <td onClick= {() => handleClick(searchResults)}>{searchResults.name}</td>
+                        </tr>
+
+                    )
+                })}
+                {recipe.map((ingredient, index) =>{
+                    return(
+                        <tr key={index} style={{color: 'white'}}>
+                            <td>{ingredient.ingredient.name}</td>
                         </tr>
                     )
                 })}
-                   
             </tbody>
         </table>
     </div>
