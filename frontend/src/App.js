@@ -28,7 +28,7 @@ const [recipeChoice,setRecipeChoice] = useState();
 
 
   return (
-    <div>
+    <div className='appDiv'>
       <Navbar />
       <Routes>
         <Route

@@ -6,6 +6,7 @@ import './SearchPage.css';
 const SearchPage = (props) => {
     const [searchResults,setSearchResults] = useState([]);
     const [filteredData,setFilteredData] = useState([]);
+    const [ingredients,setIngredients] = useState ([]);
 
     async function getSearchResults(search){
         let response = await axios.get('https://tasty.p.rapidapi.com/recipes/list?', {
@@ -52,11 +53,15 @@ const sortedData =(dataToSort)=>{
     }
 
 
-const handleClick = (event,name) => {
-    event.preventDefault();
-    props.setRecipeChoice(name)
+const handleClick = (event,name,ingredient) => {
+        setSearchResults(name,ingredient)
+        //props.results.sections.components.ingredient.name // this is the dot notation pathing that is needed to access ingredients from the tasty api
+    
     console.log('handleclick event triggered');
+    
 }
+    
+
 
 
 return(
@@ -67,7 +72,7 @@ return(
                 {searchResults && searchResults.map((searchResults, index) =>{
                     return(
                         <tr key={index}>
-                        <td>{searchResults.name}</td>
+                        <td onClick={handleClick}>{searchResults.name}</td>
                         </tr>
                     )
                 })}
