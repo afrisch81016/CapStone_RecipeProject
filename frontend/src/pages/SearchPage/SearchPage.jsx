@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import DisplayPantryItems from "../../components/Pantry/Pantry";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import './SearchPage.css';
 
@@ -45,10 +46,7 @@ const sortedData =(dataToSort)=>{
             console.log(element);
         });
         return newFilter
-        // setFilteredData(newFilter);
-        // event.preventDefault();
-        // console.log('handlesubmit event triggered');
-        // console.log('Test',searchWord);
+       
     }
     //i need to use searchResults to retrieve the recipe then i need to map over the searchResults and map over the pantry per user,
     //and then return a list of the ingredients left from the recipe(so the user knows which ingredients they are missing)
@@ -58,6 +56,7 @@ const sortedData =(dataToSort)=>{
 
     const handleClick = (recipe) => {
         setRecipe(recipe.sections[0].components);
+        findCommonIngredients();
     }
     console.log('handleclick event triggered', recipe);
 
@@ -65,14 +64,60 @@ const sortedData =(dataToSort)=>{
     //create another useState variable to store the ingredients from the recipe from the onclick
     //then map over like I have coded on line 74 then 
     //return results
-        
+    
+    
+        const recipeArray = [recipe]
+        const pantryArray = [searchResults]
+        const missingInPantry = []
+        const foundInPantry = []
+
+        function findCommonIngredients(recipe,searchResults){
+            for (let i = 0; i < recipeArray.length; i++){
+                var isIngredientFound = false
+                for (let n = 0; n < pantryArray.length; n++){
+                    if (recipeArray[i].includes(pantryArray[n]))
+                        isIngredientFound = true
+                }
+                if (isIngredientFound)
+                    foundInPantry.push(recipeArray[i])
+                else
+                    missingInPantry.push(recipeArray[i])
+                // if  (pantryArray.includes(recipeArray[i]))
+                //     foundInPantry.add(recipeArray[i])
+
+                // else
+                //     missingInPantry.add(recipeArray[i])
+                console.log(missingInPantry);
+                console.log(foundInPantry);
+            }
+    
+
+        }
+      
+    
 
 
 
 return(
     <div className='SearchBar1' >
         <SearchBar className='SearchBar' getSearchResults={getSearchResults} />
-        <table>
+        <div class="mdl-grid">
+            {searchResults && searchResults.map((searchResults, index) =>{
+                return(
+                    <div class="mdl-cell mdl-cell--4-col">
+                        <div class="mdl-card mdl-shadow--2dp">
+                            <div  class="mdl-card__title" style={{backgroundImage: searchResults.thumbnail_url, height: "150px"}}>
+                                <h2 class="mdl-card__title-text">{searchResults.name}</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                {searchResults.thumbnail_url}
+                            </div>
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+        {/* <table>
             <tbody>
                 {searchResults && searchResults.map((searchResults, index) =>{
                     return(
@@ -89,8 +134,15 @@ return(
                         </tr>
                     )
                 })}
+                {missingInPantry.map((ingredient) => {
+                    return(
+                        <tr>
+                            <td>{ingredient}</td>
+                        </tr>
+                    )
+                })}
             </tbody>
-        </table>
+        </table> */}
     </div>
 );
 
@@ -100,28 +152,3 @@ return(
 
 
 export default SearchPage
-
-
-//I know that searchResults was SET to response.data and is retrieving the data. I now need to map over the searchResults to help define the return better
-// const [definedSearchResults,setDefinedSearchResults] = useState([]);
-
-// function mappedSearch (mapped){
-    //     let mappedresponse = searchResults.map(element => {
-        //         return element.name
-        
-        //     })
-        //     console.log('Mapped', mappedresponse)
-        
-        // }
-        
-        // let filteredResult = searchResults.filter(response.data) => {
-        //         if (searchResults === ""){
-        //                 return filteredResult;
-        //             }
-        //             else if(searchResults.name.toLowerCase().includes(searchResults.toLowercase()))
-        //             return filteredResult
-            
-        //         }
-        //     }        
-
-            

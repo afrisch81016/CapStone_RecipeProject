@@ -46,17 +46,22 @@ const DisplayFavoritedRecipe = (props) => {
     return(
         <form className='formbox1' onSubmit ={handleFavRecipe}>
             <div className = 'displayFav'>Favorited Recipes
-            {savedRecipe.map((savedRecipe, index)=>{
+            <div class="mdl-grid">
+            {savedRecipe.map((savedRecipe)=>{
                 return(
-                    <table>
-                        <tbody>
-                            <tr key ={index}>
-                                <td>{savedRecipe.favoritedRecipe}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    
+                    <div class="mdl-cell mdl-cell--4-col" style={{backgroundColor : 'white'}}>{savedRecipe.favoritedRecipe}</div>
+                    
+                    // <table>
+                    //     <tbody>
+                    //         <tr key ={index}>
+                    //             <td>{savedRecipe.favoritedRecipe}</td>
+                    //         </tr>
+                    //     </tbody>
+                    // </table>
                 )
             })}
+            </div>
             </div>
         </form>
     )

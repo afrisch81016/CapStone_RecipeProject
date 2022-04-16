@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import './Pantry.css'
 import SearchPage from "../../pages/SearchPage/SearchPage";
 import HomePage from "../../pages/HomePage/HomePage";
 import axios from "axios";
@@ -56,11 +57,15 @@ const DisplayPantryItems = (props) => {
                   {ingredients.map((ingredients, index) =>{
                       return(
                       <div>
-                          <tr key={index}>{ingredients.text}
-                          <td>{ingredients.user}</td>
-                          <td>{ingredients.name}</td>
-                          <td>{ingredients.best_by_date}</td>
-                          </tr>
+                          <table>
+                              <tbody>
+                                <tr key={index} style={{color: "white"}}>{ingredients.text}
+                                    <td>{ingredients.user}</td>
+                                    <td>{ingredients.name}</td>
+                                    <td>{ingredients.best_by_date}</td>
+                                </tr>
+                              </tbody>
+                          </table>
                       </div>
                       )
                   })}
