@@ -93,7 +93,6 @@ const sortedData =(dataToSort)=>{
             setRecipe(recipe.sections[0].components);
             // findCommonIngredients();
         }
-        console.log('handleclick event triggered', recipe);
 
 
 return(

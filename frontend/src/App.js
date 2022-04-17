@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
-
+import About_Me from "./pages/About_Me/About_Me";
 
 
 // Component Imports
@@ -45,6 +45,7 @@ const [recipeChoice,setRecipeChoice] = useState();
         <Route path="/Favorite_recipes" element={<Favorite_recipes />} />
         <Route path="/Pantry" element={<Pantry />} />
         <Route path="/SearchPage" element={<SearchPage />} />
+        <Route path="/About_Me" element={<About_Me />} />
       </Routes>
       <Footer />
     </div>

@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 const DisplayFavoritedRecipe = (props) => {
     const [user,token] = useAuth()
     const [savedRecipe, setSavedRecipe] = useState([])
+    const[addRecipeToList,setAddRecipeToList] = useState ([])
 
     function handleFavRecipe(event){
         event.preventDefault();
@@ -38,19 +39,19 @@ const DisplayFavoritedRecipe = (props) => {
                     Authorization: 'Bearer ' + token,
                 }
             });
-            setSavedRecipe(response.data);
+            setAddRecipeToList(response.data);
         } catch (error){
             console.log(error.message);
         }
     }
     return(
         <form className='formbox1' onSubmit ={handleFavRecipe}>
-            <div className = 'displayFav'>Favorited Recipes
+            <div className = 'displayFav' style={{color:'white'}}>Favorited Recipes
             <div class="mdl-grid">
             {savedRecipe.map((savedRecipe)=>{
                 return(
-                    
-                    <div class="mdl-cell mdl-cell--4-col" style={{backgroundColor : 'white'}}>{savedRecipe.favoritedRecipe}</div>
+                    <div class="mdl-cell mdl-cell--4-col" style={{backgroundColor :'transparent'}}>{savedRecipe.favoritedRecipe}</div>
+
                 )
             })}
             </div>
