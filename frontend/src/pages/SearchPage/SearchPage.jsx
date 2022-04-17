@@ -52,50 +52,48 @@ const sortedData =(dataToSort)=>{
     //and then return a list of the ingredients left from the recipe(so the user knows which ingredients they are missing)
     //props.results.sections.components.ingredient.name // this is the dot notation pathing that is needed to access ingredients from the tasty api
 
-    const [recipe,setRecipe] = useState([]);
-
-    const handleClick = (recipe) => {
-        setRecipe(recipe.sections[0].components);
-        findCommonIngredients();
-    }
-    console.log('handleclick event triggered', recipe);
-
+    
     //step one is code ingredient into handleclick
     //create another useState variable to store the ingredients from the recipe from the onclick
     //then map over like I have coded on line 74 then 
     //return results
     
     
-        const recipeArray = [recipe]
-        const pantryArray = [searchResults]
-        const missingInPantry = []
-        const foundInPantry = []
-
-        function findCommonIngredients(recipe,searchResults){
-            for (let i = 0; i < recipeArray.length; i++){
-                var isIngredientFound = false
-                for (let n = 0; n < pantryArray.length; n++){
-                    if (recipeArray[i].includes(pantryArray[n]))
-                        isIngredientFound = true
-                }
-                if (isIngredientFound)
-                    foundInPantry.push(recipeArray[i])
-                else
-                    missingInPantry.push(recipeArray[i])
-                // if  (pantryArray.includes(recipeArray[i]))
-                //     foundInPantry.add(recipeArray[i])
-
-                // else
-                //     missingInPantry.add(recipeArray[i])
-                console.log(missingInPantry);
-                console.log(foundInPantry);
-            }
+        // const recipeArray = [recipe]
+        // const pantryArray = [searchResults]
+        // const missingInPantry = []
+        // const foundInPantry = []
+        
+        // function findCommonIngredients(recipe,searchResults){
+        //     for (let i = 0; i < recipeArray.length; i++){
+        //         var isIngredientFound = false
+        //         for (let n = 0; n < pantryArray.length; n++){
+        //             if (recipeArray[i].includes(pantryArray[n]))
+        //             isIngredientFound = true
+        //         }
+        //         if (isIngredientFound)
+        //         foundInPantry.push(recipeArray[i])
+        //         else
+        //         missingInPantry.push(recipeArray[i])
+        //         // if  (pantryArray.includes(recipeArray[i]))
+        //         //     foundInPantry.add(recipeArray[i])
+                
+        //         // else
+        //         //     missingInPantry.add(recipeArray[i])
+        //         console.log(missingInPantry);
+        //         console.log(foundInPantry);
+        //     } 
+        // }
+        
+        
+        
+        const [recipe,setRecipe] = useState([]);
     
-
+        const handleClick = (recipe) => {
+            setRecipe(recipe.sections[0].components);
+            // findCommonIngredients();
         }
-      
-    
-
+        console.log('handleclick event triggered', recipe);
 
 
 return(
@@ -106,43 +104,21 @@ return(
                 return(
                     <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-card mdl-shadow--2dp">
-                            <div  class="mdl-card__title" style={{backgroundImage: searchResults.thumbnail_url, height: "150px"}}>
-                                <h2 class="mdl-card__title-text">{searchResults.name}</h2>
+                            <div  class="mdl-card__title" style={{backgroundSize:'cover',backgroundPosition:'center',backgroundImage: `url(${searchResults.thumbnail_url})`, height:'400px', width:'450px',backgroundRepeat: 'no-repeat'}}>
+                                <h2 class="mdl-card__title-text" style={{height:'40px'}} onClick={() => handleClick(searchResults)}>{searchResults.name}</h2>
                             </div>
-                            <div class="mdl-card__supporting-text">
-                                {searchResults.thumbnail_url}
-                            </div>
+                            {recipe.map((ingredient) =>{
+                                return(
+                                    <div class="mdl-card__supporting-text" style={{color:'antiquewhite', fontFamily:'cursive'}}>Ingredient: {ingredient.ingredient.name}
+                                    </div>
+
+                                )
+                            })}
                         </div>
                     </div>
-                )
-            })}
+                    )
+                })}
         </div>
-        {/* <table>
-            <tbody>
-                {searchResults && searchResults.map((searchResults, index) =>{
-                    return(
-                        <tr key={index} style={{color: "white"}}>
-                        <td onClick= {() => handleClick(searchResults)}>{searchResults.name}</td>
-                        </tr>
-
-                    )
-                })}
-                {recipe.map((ingredient, index) =>{
-                    return(
-                        <tr key={index} style={{color: 'white'}}>
-                            <td>{ingredient.ingredient.name}</td>
-                        </tr>
-                    )
-                })}
-                {missingInPantry.map((ingredient) => {
-                    return(
-                        <tr>
-                            <td>{ingredient}</td>
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </table> */}
     </div>
 );
 

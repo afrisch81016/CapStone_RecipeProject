@@ -36,14 +36,15 @@ const [recipeChoice,setRecipeChoice] = useState();
           element={
             <PrivateRoute>
               <HomePage />
-              <Favorite_recipes />
               <SearchPage />
-              <Pantry />
             </PrivateRoute>
           }
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/Favorite_recipes" element={<Favorite_recipes />} />
+        <Route path="/Pantry" element={<Pantry />} />
+        <Route path="/SearchPage" element={<SearchPage />} />
       </Routes>
       <Footer />
     </div>

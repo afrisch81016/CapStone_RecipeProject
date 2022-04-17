@@ -11,8 +11,8 @@ const Navbar = () => {
     <div className="navBar">
       <ul>
         <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>React/Django JWT</b>
+          <Link to='/SearchPage' style={{ textDecoration: "none", color: "darkolivegreen" }}>
+            <b>RecipeFinder</b>
           </Link>
         </li>
         <li>
@@ -23,7 +23,23 @@ const Navbar = () => {
           )}
         </li>
       </ul>
+        <div class="mdl-layout-spacer">
+              <nav class="mdl-navigation">
+                <Link to='/Favorite_recipes' style={{ textDecoration:'none', color:'darkolivegreen'}}>
+                  <a class="mdl-navigation__link" href="">Favorite Recipes</a>
+                  </Link>
+                  <Link to="/Pantry"style={{color:'darkolivegreen'}}>
+                  <a class="mdl-navigation__link" href="">Pantry</a>
+                  </Link>
+                  <Link to="/About_Me" style={{color:'darkolivegreen'}}>
+                  <a class="mdl-navigation__link" href="">About Me</a>
+                  </Link>
+              </nav>
+              <main class="mdl-layout__content">
+              </main>
+        </div>
     </div>
+    
   );
 };
 

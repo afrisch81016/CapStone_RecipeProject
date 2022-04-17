@@ -1,0 +1,26 @@
+.SearchBar1{
+    background-image: url(https://cdn.wallpapersafari.com/27/92/jbVXcq.jpg);
+    height: 1800px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.mdl-card__supporting-text{
+    background-image: url(https://media.istockphoto.com/photos/empty-rustic-cutting-board-with-copy-space-picture-id598693844?k=6&m=598693844&s=612x612&w=0&h=H9JQV80S6BI_Lix6BGq7VzQcwXb-GRYXRNMJBsG40FA=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: content-box;
+
+}
+.mdl_card{
+    border-radius: 100px;
+    box-sizing: content-box;
+    width:270px;
+    overflow: hidden;
+}
+.mdl-card__title-text{
+    font-size: 18px;
+    color:rgb(142, 62, 5);
+    font-display:initial;
+    cursor: pointer;
+    
+}

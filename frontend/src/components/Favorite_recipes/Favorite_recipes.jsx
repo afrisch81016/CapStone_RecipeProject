@@ -51,14 +51,6 @@ const DisplayFavoritedRecipe = (props) => {
                 return(
                     
                     <div class="mdl-cell mdl-cell--4-col" style={{backgroundColor : 'white'}}>{savedRecipe.favoritedRecipe}</div>
-                    
-                    // <table>
-                    //     <tbody>
-                    //         <tr key ={index}>
-                    //             <td>{savedRecipe.favoritedRecipe}</td>
-                    //         </tr>
-                    //     </tbody>
-                    // </table>
                 )
             })}
             </div>
