@@ -43,7 +43,7 @@ const LoginPage = () => {
           <p className="error">Login failed, incorrect credentials!</p>
         ) : null}
         <Link to="/register">Click to register!</Link>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Login!</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style={{color:'white'}}>Login!</button>
       </form>
     </div>
   );

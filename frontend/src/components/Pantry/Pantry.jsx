@@ -53,16 +53,19 @@ const DisplayPantryItems = (props) => {
     }
        return(
            <form className='formbox' onSubmit={handleIngredient}>
-              <div className = 'displayPantry'> Pantry
+              <div className = 'displayPantry' style={{color:'white', fontSize:'50px',paddingBottom:'10px'}}> Pantry
                   {ingredients.map((ingredients, index) =>{
                       return(
                       <div>
                           <table>
                               <tbody>
                                 <tr key={index} style={{color: "white"}}>{ingredients.text}
-                                    <td>{ingredients.user}</td>
+                                <p>
                                     <td>{ingredients.name}</td>
+                                </p>    
+                                <p>
                                     <td>{ingredients.best_by_date}</td>
+                                </p>    
                                 </tr>
                               </tbody>
                           </table>
