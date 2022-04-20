@@ -26,13 +26,13 @@ const Navbar = () => {
         <div class="mdl-layout-spacer">
               <nav class="mdl-navigation">
                 <Link to='/Favorite_recipes' style={{ textDecoration:'none', color:'darkolivegreen'}}>
-                  <a className="favrecipe" class="mdl-navigation__link" href="">Favorite Recipes</a>
+                  <a class="mdl-navigation__link favrecipe" href="">Favorite Recipes</a>
                   </Link>
                   <Link to="/Pantry"style={{color:'darkolivegreen'}}>
-                  <a className="pantry" class="mdl-navigation__link" href="">Pantry</a>
+                  <a class="mdl-navigation__link pantry" href="">Pantry</a>
                   </Link>
                   <Link to="/About_Me" style={{color:'darkolivegreen'}}>
-                  <a className="aboutme" class="mdl-navigation__link" href="">About Me</a>
+                  <a class="mdl-navigation__link aboutme" href="">About Me</a>
                   </Link>
               </nav>
               <main class="mdl-layout__content">

@@ -102,9 +102,10 @@ return(
             {searchResults && searchResults.map((searchResults, index) =>{
                 return(
                     <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div  class="mdl-card__title" style={{backgroundSize:'cover',backgroundPosition:'center',backgroundImage: `url(${searchResults.thumbnail_url})`, height:'400px', width:'450px',backgroundRepeat: 'no-repeat'}}>
-                                <h2 class="mdl-card__title-text" style={{height:'40px'}} onClick={() => handleClick(searchResults)}>{searchResults.name}</h2>
+                        <div style={{background:'dimgray'}} class="mdl-card custom-card mdl-shadow--2dp">
+                            <div  class="mdl-card__title" style={{backgroundSize:'cover',backgroundPosition:'center',backgroundImage: `url(${searchResults.thumbnail_url})`, height:'400px', width:'350px',backgroundRepeat: 'no-repeat'}}>
+                                <button>Add to your Fav's!</button>
+                                <h2 class="mdl-card__title-text" onClick={() => handleClick(searchResults)}>{searchResults.name}</h2>
                             </div>
                             {recipe.map((ingredient) =>{
                                 return(

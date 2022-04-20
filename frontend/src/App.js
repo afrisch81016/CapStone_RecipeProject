@@ -12,7 +12,6 @@ import About_Me from "./pages/About_Me/About_Me";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
 import Pantry from "./components/Pantry/Pantry";
 import Favorite_recipes from "./components/Favorite_recipes/Favorite_recipes";
 
@@ -24,7 +23,6 @@ import { useEffect, useState } from "react";
 function App() {
 
 const [recipeChoice,setRecipeChoice] = useState();
-
 
 
   return (
@@ -47,7 +45,6 @@ const [recipeChoice,setRecipeChoice] = useState();
         <Route path="/SearchPage" element={<SearchPage />} />
         <Route path="/About_Me" element={<About_Me />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

@@ -12,7 +12,7 @@ li {
   background-image:url(https://cmkt-image-prd.freetls.fastly.net/0.1.0/ps/7353029/910/607/m2/fpnw/wm1/kiwikc0o9yejexpzwzylxsuy30gsti4hjy5uo9ctmct07xumbwzebvxnoipkfdqc-.jpg?1574572852&s=c11972d8bed969f4840ac3508316c233);
   box-shadow: 4px 2px 5px gray;
   color:darkolivegreen;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
   padding: 1.5rem 2rem;
 }
 
@@ -21,6 +21,10 @@ li {
   border: 2px solid white;
   color: white;
   padding: 0.4rem 0.5rem;
+}
+
+.mdl-navigation{
+  padding-top: 35px;
 }
 
 .navBar button:hover {
@@ -35,13 +39,20 @@ li {
 }
 
 .favrecipe{
-  color: white
+  color: white;
+  margin-top: 10px;
+  padding-right: 20px;
+
 }
 
 .pantry{
-  color:white
+  color:white;
+  margin-top: 10px;
+  padding-right: 20px;
 }
 
 .aboutme{
-  color:white
+  color:white;
+  margin-top: 10px;
+  padding-right: 20px;
 }

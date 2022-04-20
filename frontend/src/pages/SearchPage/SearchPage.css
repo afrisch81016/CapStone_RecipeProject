@@ -1,26 +1,28 @@
 .SearchBar1{
-    background-image: url(https://cdn.wallpapersafari.com/27/92/jbVXcq.jpg);
-    height: 1800px;
+    height: auto;
     background-size: cover;
     background-repeat: no-repeat;
+    padding-top: 55px;
 }
 .mdl-card__supporting-text{
-    background-image: url(https://media.istockphoto.com/photos/empty-rustic-cutting-board-with-copy-space-picture-id598693844?k=6&m=598693844&s=612x612&w=0&h=H9JQV80S6BI_Lix6BGq7VzQcwXb-GRYXRNMJBsG40FA=);
-    background-repeat: no-repeat;
-    background-size: cover;
     box-sizing: content-box;
 
 }
-.mdl_card{
+.mdl_card.custom-card{
+    background-color: dimgray;
     border-radius: 100px;
     box-sizing: content-box;
     width:270px;
     overflow: hidden;
 }
 .mdl-card__title-text{
+    background-color: rgba(0,0,0,.3);
     font-size: 18px;
-    color:rgb(142, 62, 5);
+    color: white;
     font-display:initial;
     cursor: pointer;
+    margin: 0%;
+    padding:10px;
+    margin-right: 20px;
     
 }
