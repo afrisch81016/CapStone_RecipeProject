@@ -32,18 +32,7 @@ const DisplayFavoritedRecipe = (props) => {
         savedRecipeByUser();
     },[]);
 
-    const addNewFavRecipe = async(newFavRecipe) => {
-        try {
-            let response = await axios.post('http://127.0.0.1:8000/api/customers/addfav/', newFavRecipe,{
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                }
-            });
-            setAddRecipeToList(response.data);
-        } catch (error){
-            console.log(error.message);
-        }
-    }
+  
     return(
         <form className='formbox1' onSubmit ={handleFavRecipe}>
             <div className = 'displayFav' style={{color:'white'}}>Favorited Recipes

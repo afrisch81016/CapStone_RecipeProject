@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import DisplayPantryItems from "../../components/Pantry/Pantry";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import './SearchPage.css';
 
 const SearchPage = (props) => {
     const [searchResults,setSearchResults] = useState([]);
-    
+    const [addRecipeToList, setAddRecipeToList] =useState([]);
+    const [user,token] = useAuth();
 
     async function getSearchResults(search){
         let response = await axios.get('https://tasty.p.rapidapi.com/recipes/list?', {
@@ -27,6 +29,32 @@ const SearchPage = (props) => {
     let result = sortedData(response.data.results)
     setSearchResults(result);
 }
+
+const addNewFavRecipe = async(newFavRecipe) => {
+    try {
+        let response = await axios.post('http://127.0.0.1:8000/api/customers/addfav/', newFavRecipe,{
+            headers: {
+                Authorization: 'Bearer ' + token,
+            }
+        });
+        setAddRecipeToList(response.data);
+    } catch (error){
+        console.log(error.message);
+    }
+}
+
+const handleNewFavClick= (event, id) =>{
+    event.preventDefault();
+    let newFavSaved ={
+        text: searchResults.name,
+        recipe_id: searchResults.id,
+        user: user
+    }
+    console.log(newFavSaved);
+    addNewFavRecipe(newFavSaved)
+}
+
+
 
 const sortedData =(dataToSort)=>{
 
@@ -104,7 +132,9 @@ return(
                     <div class="mdl-cell mdl-cell--4-col">
                         <div style={{background:'dimgray'}} class="mdl-card custom-card mdl-shadow--2dp">
                             <div  class="mdl-card__title" style={{backgroundSize:'cover',backgroundPosition:'center',backgroundImage: `url(${searchResults.thumbnail_url})`, height:'400px', width:'350px',backgroundRepeat: 'no-repeat'}}>
-                                <button>Add to your Fav's!</button>
+                            <button onClick={handleNewFavClick} class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">ADD</i>
+                            </button>
                                 <h2 class="mdl-card__title-text" onClick={() => handleClick(searchResults)}>{searchResults.name}</h2>
                             </div>
                             {recipe.map((ingredient) =>{

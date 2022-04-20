@@ -52,7 +52,7 @@ const DisplayPantryItems = (props) => {
        }
     }
        return(
-           <form className='formbox' onSubmit={handleIngredient}>
+           <form className='formbox' onClick={handleIngredient}>
               <div className = 'displayPantry' style={{color:'white', fontSize:'50px',paddingBottom:'10px'}}> Pantry
                   {ingredients.map((ingredients, index) =>{
                       return(
