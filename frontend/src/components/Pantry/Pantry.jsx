@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Modal from 'react-awesome-modal';
 import './Pantry.css'
 import SearchPage from "../../pages/SearchPage/SearchPage";
 import HomePage from "../../pages/HomePage/HomePage";
@@ -7,14 +8,15 @@ import useAuth from "../../hooks/useAuth";
 
 const DisplayPantryItems = (props) => {
     const [user, token] = useAuth()
-    const[ingredients,setIngredients] = useState ([])
+    const[ingredients,setIngredients] = useState ([]);
+    const [visible, setVisible] = useState(false);
 
-    function handleIngredient(event){
-        event.preventDefault();
+    function handleIngredient(){
         let newIngredient = {
-            text: ingredients,
-            recipe_id: props.searchResults,
-            pantry: user.id
+            name: ingredients,
+            best_by_date: props.searchResults,
+            user: user?.id
+        
         };
 
         console.log(newIngredient);
@@ -52,7 +54,7 @@ const DisplayPantryItems = (props) => {
        }
     }
        return(
-           <form className='formbox' onClick={handleIngredient}>
+           <div className='formbox' onClick={handleIngredient}>
               <div className = 'displayPantry' style={{color:'white', fontSize:'50px',paddingBottom:'10px'}}> Pantry
                   {ingredients.map((ingredients, index) =>{
                       return(
@@ -72,8 +74,14 @@ const DisplayPantryItems = (props) => {
                       </div>
                       )
                   })}
+                  <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={() => setVisible(true)}>Add</button>
+                  <Modal visible={visible} width='500' height='400' effect='fadeInUp' onClickAway={() => setVisible(false)}>
+                        <div>
+                            This is the modal pop up.....
+                        </div>
+                  </Modal>
               </div>
-           </form>
+           </div>
 
        )
    }
