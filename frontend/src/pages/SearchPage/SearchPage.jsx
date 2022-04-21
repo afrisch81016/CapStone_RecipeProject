@@ -7,8 +7,9 @@ import './SearchPage.css';
 
 const SearchPage = (props) => {
     const [searchResults,setSearchResults] = useState([]);
-    const [addRecipeToList, setAddRecipeToList] =useState([]);
+    const [addRecipeToList, setAddRecipeToList] =useState({});
     const [user,token] = useAuth();
+    const [selectedRecipeId, setSelectedRecipeId] = useState('')
 
     async function getSearchResults(search){
         let response = await axios.get('https://tasty.p.rapidapi.com/recipes/list?', {
@@ -36,21 +37,21 @@ const addNewFavRecipe = async(newFavRecipe) => {
             headers: {
                 Authorization: 'Bearer ' + token,
             }
+
         });
-        setAddRecipeToList(response.data);
+        console.log(response);
+        // setAddRecipeToList(response.data);
     } catch (error){
         console.log(error.message);
     }
 }
 
-const handleNewFavClick= (event, id) =>{
-    event.preventDefault();
+const handleNewFavClick= (recipe) =>{
     let newFavSaved ={
-        text: searchResults.name,
-        recipe_id: searchResults.id,
-        user: user
+        favoritedRecipe: recipe.name,
+        user: user?.id
     }
-    console.log(newFavSaved);
+
     addNewFavRecipe(newFavSaved)
 }
 
@@ -118,26 +119,27 @@ const sortedData =(dataToSort)=>{
         const [recipe,setRecipe] = useState([]);
     
         const handleClick = (recipe) => {
+            setSelectedRecipeId(recipe.id)
             setRecipe(recipe.sections[0].components);
-            // findCommonIngredients();
+            // findCommonIngredients();()
         }
 
 
 return(
     <div className='SearchBar1' >
         <SearchBar className='SearchBar' getSearchResults={getSearchResults} />
-        <div class="mdl-grid">
-            {searchResults && searchResults.map((searchResults, index) =>{
+        <div className="mdl-grid">
+            {searchResults && searchResults.map((searchResult, index) =>{
                 return(
                     <div class="mdl-cell mdl-cell--4-col">
                         <div style={{background:'dimgray'}} class="mdl-card custom-card mdl-shadow--2dp">
-                            <div  class="mdl-card__title" style={{backgroundSize:'cover',backgroundPosition:'center',backgroundImage: `url(${searchResults.thumbnail_url})`, height:'400px', width:'350px',backgroundRepeat: 'no-repeat'}}>
-                            <button onClick={handleNewFavClick} class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <div  class="mdl-card__title" style={{backgroundSize:'cover',backgroundPosition:'center',backgroundImage: `url(${searchResult.thumbnail_url})`, height:'400px', width:'350px',backgroundRepeat: 'no-repeat'}}>
+                            <button onClick={() => handleNewFavClick(searchResult)} class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                                 <i class="material-icons">ADD</i>
                             </button>
-                                <h2 class="mdl-card__title-text" onClick={() => handleClick(searchResults)}>{searchResults.name}</h2>
+                                <h2 class="mdl-card__title-text" onClick={() => handleClick(searchResult)}>{searchResult.name}</h2>
                             </div>
-                            {recipe.map((ingredient) =>{
+                            {selectedRecipeId === searchResult.id && recipe.map((ingredient) =>{
                                 return(
                                     <div class="mdl-card__supporting-text" style={{color:'antiquewhite', fontFamily:'cursive'}}>Ingredient: {ingredient.ingredient.name}
                                     </div>
