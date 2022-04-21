@@ -134,9 +134,7 @@ return(
                     <div class="mdl-cell mdl-cell--4-col">
                         <div style={{background:'dimgray'}} class="mdl-card custom-card mdl-shadow--2dp">
                             <div  class="mdl-card__title" style={{backgroundSize:'cover',backgroundPosition:'center',backgroundImage: `url(${searchResult.thumbnail_url})`, height:'400px', width:'350px',backgroundRepeat: 'no-repeat'}}>
-                            <button onClick={() => handleNewFavClick(searchResult)} class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                <i class="material-icons">ADD</i>
-                            </button>
+                            <button className='addtofavbutton' onClick={() => handleNewFavClick(searchResult)}>Add to Favorites</button>
                                 <h2 class="mdl-card__title-text" onClick={() => handleClick(searchResult)}>{searchResult.name}</h2>
                             </div>
                             {selectedRecipeId === searchResult.id && recipe.map((ingredient) =>{
