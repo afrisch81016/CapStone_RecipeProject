@@ -86,35 +86,7 @@ const sortedData =(dataToSort)=>{
     //create another useState variable to store the ingredients from the recipe from the onclick
     //then map over like I have coded on line 74 then 
     //return results
-    
-    
-        // const recipeArray = [recipe]
-        // const pantryArray = [searchResults]
-        // const missingInPantry = []
-        // const foundInPantry = []
-        
-        // function findCommonIngredients(recipe,searchResults){
-        //     for (let i = 0; i < recipeArray.length; i++){
-        //         var isIngredientFound = false
-        //         for (let n = 0; n < pantryArray.length; n++){
-        //             if (recipeArray[i].includes(pantryArray[n]))
-        //             isIngredientFound = true
-        //         }
-        //         if (isIngredientFound)
-        //         foundInPantry.push(recipeArray[i])
-        //         else
-        //         missingInPantry.push(recipeArray[i])
-        //         // if  (pantryArray.includes(recipeArray[i]))
-        //         //     foundInPantry.add(recipeArray[i])
-                
-        //         // else
-        //         //     missingInPantry.add(recipeArray[i])
-        //         console.log(missingInPantry);
-        //         console.log(foundInPantry);
-        //     } 
-        // }
-        
-        
+       
         
         const [recipe,setRecipe] = useState([]);
     

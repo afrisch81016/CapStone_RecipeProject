@@ -13,19 +13,7 @@ const DisplayPantryItems = (props) => {
     const [newIngredient, setNewIngredient] = useState({ user: user.id, name: "", "best_by_date" : "", "costOfIngredient" : "4.99"});
     const [visible, setVisible] = useState(false); //set to false so the window does not pop up on intial page setup; Named it visible to help me undersatnd that it can invisible and visible with true false statements
 
-    // function handleIngredient(){
-    //     let newIngredient = {
-    //         name: ingredients.name,
-    //         best_by_date: ingredients.best_by_date,
-
-    //         user: user?.id
-        
-    //     };
-
-    //     console.log(newIngredient);
-    //     addIngredient(newIngredient);
-    //     pantryIngredients(newIngredient);
-    // }
+   
     const pantryIngredients =async() =>{
         try {
             let response = await axios.get('http://127.0.0.1:8000/api/ingredient/addnew/',{
@@ -44,9 +32,9 @@ const DisplayPantryItems = (props) => {
 
 
     const alertWhenExpired = () => {
-        const today = new Date();
+        const today = new Date(); //Date is todays date
         ingredients.forEach(ingredient => {
-            if(today >= new Date(ingredient.best_by_date)){
+            if(today >= new Date(ingredient.best_by_date)){ //this is todays date and the best by date of each ingredient
                 // alert(`${ingredient.name} has expired!`);
                 toast.error(`${ingredient.name} has expired!`);
                 return;
@@ -54,7 +42,7 @@ const DisplayPantryItems = (props) => {
         });
         }
 
-    useEffect(alertWhenExpired, [ingredients]);
+    useEffect(alertWhenExpired, [ingredients]); // In this useEffect the ingredients is the dependency which reruns when the ingredients have changed in some way
 
 
 
@@ -80,7 +68,7 @@ const DisplayPantryItems = (props) => {
 
 
     const handleChange = ({ currentTarget: input }) => {
-        const newData = { ...newIngredient };
+        const newData = { ...newIngredient }; // 
         newData[input.name] = input.value;
         setNewIngredient(newData);
     }
@@ -107,12 +95,25 @@ const DisplayPantryItems = (props) => {
                             <h5 style={{textAlign: 'center', marginBottom: '40px'}}>Add New Ingredient</h5>
                             <div style={{ marginBottom: '20px'}}>
                                 <label htmlFor="name" style={{color: 'black', fontSize: '15px', display: 'block'}}>Ingredient Name: </label>
-                                <input id='name' type='text' name='name' value={newIngredient.name} style={{width: '100%', height: '40px', padding: '10px'}} onChange={handleChange} />
+                                <input 
+                                id='name'
+                                type='text'
+                                name='name'
+                                value={newIngredient.name}
+                                style={{width: '100%', height: '40px', padding: '10px'}} 
+                                onChange={handleChange} /> 
+                                {/* the onchange is keeping track of any type of change inside the input for ingredients */}
                             </div>
 
                             <div style={{ marginBottom: '20px'}}>
                                 <label htmlFor="date" style={{color: 'black', fontSize: '15px', display: 'block'}}>Best by Date: </label>
-                                <input id="date" type='date' name='best_by_date' value={newIngredient.best_by_date} style={{width: '100%', height: '40px', padding: '10px'}} onChange={handleChange}  />
+                                <input 
+                                id="date" 
+                                type='date' 
+                                name='best_by_date' 
+                                value={newIngredient.best_by_date} 
+                                style={{width: '100%', height: '40px', padding: '10px'}} 
+                                onChange={handleChange}  />
                             </div>
                             
                             <button style={{width:'100%'}} onClick={addIngredient}>Add to Pantry</button>
