@@ -1,0 +1,29 @@
+
+
+.fav-container{
+    width: 40%;
+    margin: 30px auto;
+    background: #0f4e73;
+    padding: 20px;
+    border-radius: 5px;
+    min-height: 60vh;
+}
+
+.fav-header{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.fav-item{
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 0;
+    background: #0a3852;
+    margin-bottom: 10px;
+}
+
+.fav-item:hover{
+    background: #156a9b;
+}

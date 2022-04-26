@@ -28,8 +28,8 @@
 }
 
 .addtofavbutton{
-    background-color:darkgray;
     cursor: pointer;
     margin-bottom: auto;
     border-radius: 80px;
+    overflow: hidden;
 }

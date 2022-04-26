@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import DisplayPantryItems from "../../components/Pantry/Pantry";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import './SearchPage.css';
+import { BsFillSuitHeartFill } from 'react-icons/bs';
 
 const SearchPage = (props) => {
     const [searchResults,setSearchResults] = useState([]);
@@ -106,7 +107,7 @@ return(
                     <div class="mdl-cell mdl-cell--4-col">
                         <div style={{background:'dimgray'}} class="mdl-card custom-card mdl-shadow--2dp">
                             <div  class="mdl-card__title" style={{backgroundSize:'cover',backgroundPosition:'center',backgroundImage: `url(${searchResult.thumbnail_url})`, height:'400px', width:'350px',backgroundRepeat: 'no-repeat'}}>
-                            <button className='addtofavbutton' onClick={() => handleNewFavClick(searchResult)}>Add to Favorites</button>
+                            <BsFillSuitHeartFill size={40} color={'maroon'} className='addtofavbutton' onClick={() => handleNewFavClick(searchResult)} />
                                 <h2 class="mdl-card__title-text" onClick={() => handleClick(searchResult)}>{searchResult.name}</h2>
                             </div>
                             {selectedRecipeId === searchResult.id && recipe.map((ingredient) =>{

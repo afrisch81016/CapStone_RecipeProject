@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from "../../hooks/useAuth";
+import './Favorite_recipe.css';
 
 const DisplayFavoritedRecipe = (props) => {
     const [user,token] = useAuth()
@@ -34,18 +35,16 @@ const DisplayFavoritedRecipe = (props) => {
 
   
     return(
-        <form className='formbox1' onSubmit ={handleFavRecipe}>
-            <div className = 'displayFav' style={{color:'white'}}>Favorited Recipes
-            <div class="mdl-grid">
+        <div className='fav-container' onSubmit ={handleFavRecipe}>
+            <h1 className = 'fav-header' style={{color:'white'}}>Favorited Recipes</h1>
             {savedRecipe.map((savedRecipe)=>{
                 return(
-                    <div class="mdl-cell mdl-cell--4-col" style={{backgroundColor :'transparent'}}>{savedRecipe.favoritedRecipe}</div>
-
+                    <div class="fav-item" >
+                        {savedRecipe.favoritedRecipe}
+                    </div>
                 )
             })}
-            </div>
-            </div>
-        </form>
+        </div>
     )
 }
 
