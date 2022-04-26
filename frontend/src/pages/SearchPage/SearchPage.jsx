@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 import useAuth from "../../hooks/useAuth";
 import DisplayPantryItems from "../../components/Pantry/Pantry";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -42,6 +43,7 @@ const addNewFavRecipe = async(newFavRecipe) => {
 
         });
         console.log(response);
+        toast.success(`${response.data.favoritedRecipe} has been added to fav list`) // using installed toastify to prompt user that recipe has been saved
         // setAddRecipeToList(response.data);
     } catch (error){
         console.log(error.message);
@@ -98,18 +100,19 @@ const sortedData =(dataToSort)=>{
             setSelectedRecipeId(recipe.id)
             let allIngredients = recipe.sections[0].components;
 
-             for(let i = 0; i < ingredients.length; i++){
-                 for(let j =0; j < allIngredients.length; j++){
-                     if(ingredients[i].name === allIngredients[j].ingredient.name){
-                         console.log("This is in the pantry");
-                        //  allIngredients.filter(item => item.ingredient.name !== allIngredients[j].ingredient.name)
+      
+             for(let i = 0; i < ingredients.length; i++){ // This iterates over all the ingredents in the pantry
+                 for(let j =0; j < allIngredients.length; j++){  // This iterates over all the ingredients for a particular recipe
+                     if(ingredients[i].name === allIngredients[j].ingredient.name || // Compares the current pantry ingredient with all the recipe ingredient. 
+                        ingredients[i].name.includes(allIngredients[j].ingredient.name)){ 
+                         allIngredients = allIngredients.filter(item => item.ingredient.name !== allIngredients[j].ingredient.name) // Filters out the ingredient that are in the pantry!
                      }
                  }
              }
 
-            // console.log(allIngredients);
+            console.log(allIngredients);
             console.log(recipe.sections[0].components) 
-            setRecipe(recipe.sections[0].components);
+            setRecipe(allIngredients);
             // findCommonIngredients();()
         }
 
@@ -129,20 +132,6 @@ const sortedData =(dataToSort)=>{
     
         useEffect(pantryIngredients, []);
 
-        
-            const [likeButtonClass, setLikeButtonClass] =useState("maroon");  // using hooks to sotre state of the button colors
-        
-            function handleClickLike(event){
-                event.preventDefault(); //prevents refreshing of the page. data stays on until webpage is refreshed
-                if(likeButtonClass === "maroon"){
-                    setLikeButtonClass("red");  //when clicking on "like" button, this sets the color to red
-                
-                }
-                else {
-                    setLikeButtonClass("maroon");//if button is already red, switches it back to maroon
-                }
-            }
-        
 return(
     <div className='SearchBar1' >
         <SearchBar className='SearchBar' getSearchResults={getSearchResults} />
@@ -152,7 +141,7 @@ return(
                     <div class="mdl-cell mdl-cell--4-col">
                         <div style={{background:'dimgray'}} class="mdl-card custom-card mdl-shadow--2dp">
                             <div  class="mdl-card__title" style={{backgroundSize:'cover',backgroundPosition:'center',backgroundImage: `url(${searchResult.thumbnail_url})`, height:'400px', width:'350px',backgroundRepeat: 'no-repeat'}}>
-                            <BsFillSuitHeartFill size={40} color={'maroon'} className='addtofavbutton' onClick={() => handleNewFavClick(searchResult)} />
+                            <BsFillSuitHeartFill size={40} color={'rgb(156, 5, 5)'} className='addtofavbutton' onClick={() => handleNewFavClick(searchResult)} />
                                 <h2 class="mdl-card__title-text" onClick={() => handleClick(searchResult)}>{searchResult.name}</h2>
                             </div>
                             {selectedRecipeId === searchResult.id && recipe.map((ingredient) =>{
