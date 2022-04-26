@@ -11,6 +11,7 @@ const SearchPage = (props) => {
     const [addRecipeToList, setAddRecipeToList] =useState({});
     const [user,token] = useAuth();
     const [selectedRecipeId, setSelectedRecipeId] = useState('')
+    const[ingredients,setIngredients] = useState ([])
 
     async function getSearchResults(search){
         let response = await axios.get('https://tasty.p.rapidapi.com/recipes/list?', {
@@ -78,6 +79,8 @@ const sortedData =(dataToSort)=>{
         return newFilter
        
     }
+
+    
     //i need to use searchResults to retrieve the recipe then i need to map over the searchResults and map over the pantry per user,
     //and then return a list of the ingredients left from the recipe(so the user knows which ingredients they are missing)
     //props.results.sections.components.ingredient.name // this is the dot notation pathing that is needed to access ingredients from the tasty api
@@ -93,11 +96,53 @@ const sortedData =(dataToSort)=>{
     
         const handleClick = (recipe) => {
             setSelectedRecipeId(recipe.id)
+            let allIngredients = recipe.sections[0].components;
+
+             for(let i = 0; i < ingredients.length; i++){
+                 for(let j =0; j < allIngredients.length; j++){
+                     if(ingredients[i].name === allIngredients[j].ingredient.name){
+                         console.log("This is in the pantry");
+                        //  allIngredients.filter(item => item.ingredient.name !== allIngredients[j].ingredient.name)
+                     }
+                 }
+             }
+
+            // console.log(allIngredients);
+            console.log(recipe.sections[0].components) 
             setRecipe(recipe.sections[0].components);
             // findCommonIngredients();()
         }
 
+        const pantryIngredients =async() =>{
+            try {
+                let response = await axios.get('http://127.0.0.1:8000/api/ingredient/addnew/',{
+                    headers: {
+                        Authorization: 'Bearer ' + token,
+                    }
+                });
+                setIngredients(response.data);
+                console.log(response.data);
+            } catch (error){
+                console.log(error.message);
+            }
+         }
+    
+        useEffect(pantryIngredients, []);
 
+        
+            const [likeButtonClass, setLikeButtonClass] =useState("maroon");  // using hooks to sotre state of the button colors
+        
+            function handleClickLike(event){
+                event.preventDefault(); //prevents refreshing of the page. data stays on until webpage is refreshed
+                if(likeButtonClass === "maroon"){
+                    setLikeButtonClass("red");  //when clicking on "like" button, this sets the color to red
+                
+                }
+                else {
+                    setLikeButtonClass("maroon");//if button is already red, switches it back to maroon
+                }
+            }
+        
 return(
     <div className='SearchBar1' >
         <SearchBar className='SearchBar' getSearchResults={getSearchResults} />
