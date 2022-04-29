@@ -35,10 +35,11 @@ li {
 
 .brand {
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .favrecipe{
+  font-size: 18px;
   color: white;
   margin-top: 10px;
   padding-right: 20px;
@@ -46,12 +47,14 @@ li {
 }
 
 .pantry{
+  font-size: 18px;
   color:white;
   margin-top: 10px;
   padding-right: 20px;
 }
 
 .aboutme{
+  font-size: 18px;
   color:white;
   margin-top: 10px;
   padding-right: 20px;

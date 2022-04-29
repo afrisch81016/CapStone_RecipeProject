@@ -11,7 +11,7 @@ const Navbar = () => {
     <div className="navBar">
       <ul>
         <li className="brand">
-          <Link to='/SearchPage' style={{ textDecoration: "none", color: "darkolivegreen" }}>
+          <Link to='/SearchPage' style={{ textDecoration: "none", color:'forestgreen',paddingLeft:'40px'}}>
             <b>RecipeFinder</b>
           </Link>
         </li>

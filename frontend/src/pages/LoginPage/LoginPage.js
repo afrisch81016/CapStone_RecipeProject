@@ -20,8 +20,8 @@ const LoginPage = () => {
 
   return (
     <div className="container">
-      <form className="form" onSubmit={handleSubmit}>
-        <label style={{color:"white"}}>
+      <form className="form" style={{marginTop:'45px'}} onSubmit={handleSubmit}>
+        <label style={{fontSize:'18px'}}>
           Username:{" "}
           <input
             type="text"
@@ -30,7 +30,7 @@ const LoginPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <label style={{color:'white'}}>
+        <label style={{fontSize:'18px'}}>
           Password:{" "}
           <input
             type="text"
